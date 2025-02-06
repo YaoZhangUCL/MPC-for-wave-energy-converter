@@ -20,27 +20,15 @@ Prediction = Ptime/Ts;
 
 % 10nd-order modeling of WEC 
 % radiation force
-Ar= [ 0 0 -17.9
-    1 0 -17.7
-    0 1 -4.41];
-Br = [36.5
-    394
-    75.1];
-Cr = [0 0 1];
+Ar= [];
+Br = [];
+Cr = [];
 % [Ar Br Cr Dr] = tf2ss(num,dem)
 %excitation force
 [n_r,~] = size(Ar)
-Ae= [ 0 0 0 0 -400
-    1 0 0 0 -459
-    0 1 0 0 -226
-    0 0 1 0 -64
-    0 0 0 1 -9.96];
-Be = [1549886
-    -116380
-    24748
-    -644
-    19.3];
-Ce = [0 0 0 0 1];
+Ae= [ ];
+Be = [];
+Ce = [];
 [n_e,~] = size(Ae)
 
 %% WEC state-space continous time
@@ -65,13 +53,7 @@ Bu = B(:,2);
 N=50;
 tend = 200;
 
-load wdata
-TS=0.5;
-trunc = 2500/TS+1;
-time = wdata(1:trunc,1);
 
-cut_off = 0;
-w_origin = wdata(cut_off*trunc+1:trunc*(cut_off+1),2);
 
 % Interpolation of wave amplitud ;
 ti = (0:Ts:(trunc-1)*TS)'; 
@@ -97,10 +79,10 @@ grid on;
 plotstyle = 'c--';
 control_horizon = 20;
 % controller parameter tuning 
-R = 0.08;
-T = 1;
-q1 = 6;
-q2 = 9.8;
+R = ;
+T = ;
+q1 = ;
+q2 = ;
 
 Q = blkdiag(q1,q2,eps*eye(nx-2));
 
